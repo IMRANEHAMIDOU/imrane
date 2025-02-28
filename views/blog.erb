@@ -6,33 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AphaSoft</title>
     <script src="/index.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="container bg-black text-white py-4 px-40">
-    <h1 class="text-[50px]">Bienvenu sur mon blog</h1>
+<body class="container mx-auto bg-black text-white py-4 px-4 md:px-20 lg:px-40">
+    <h1 class="text-3xl md:text-5xl text-center">Bienvenue sur mon blog</h1>
     <div class="w-full mt-6">
        
-        <div class="flex justify-between items-center py-4">
+        <div class="flex flex-wrap justify-between items-center py-4 gap-4">
             <a href="/" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
                 Accueil
             </a>
-            <h1 class="text-3xl font-bold text-center">Liste des Posts</h1>
-            <div class="text-right">
-                <a id="addPost" href="/blog/add" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    Ajouter un Post
-                </a>
-            </div>
+            <h1 class="text-xl md:text-3xl font-bold text-center flex-1">Liste des Posts</h1>
+            <a id="addPost" href="/blog/add" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Ajouter un Post
+            </a>
         </div>
 
         <!-- Liste des posts -->
         <div id="postsList" class="space-y-4">
             <% posts.each do |post| %>
                 <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h2 class="text-xl font-semibold mb-2 text-black"><%= post["title"] %></h2>
+                    <h2 class="text-lg md:text-xl font-semibold mb-2 text-black"><%= post["title"] %></h2>
                     <p class="text-gray-700 mb-4">
                         <%= post["content"][0..100] %>...
                     </p>
-                    <div class="flex space-x-4">
+                    <div class="flex flex-wrap gap-2">
                         <a href="/blog/post/<%= post['id'] %>/edit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
                             Modifier
                         </a>

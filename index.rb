@@ -94,6 +94,17 @@ get '/blog/post/:id/edit' do
   end
 end
 
+#edition dun post
+get '/blog/post/:id' do
+  post_id = params[:id].to_i
+  post = $posts.find { |post| post["id"] == post_id }
+  if post
+    erb :show, locals: { post: post}
+  else
+    puts "Post non trouvé !" 
+  end
+end
+
 #persistence la l'edition
 post '/blog/post/:id/edit' do
   post_id = params[:id].to_i
@@ -110,7 +121,6 @@ end
 get '/blog/post/:id/delet' do
   post_id = params[:id].to_i
   $posts.reject! { |post| post["id"] == post_id }
-
   File.write($db, JSON.pretty_generate($posts))
   redirect "/blog"
 end

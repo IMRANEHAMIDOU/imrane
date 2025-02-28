@@ -1,10 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "Introduction à Sinatra",
-    "content": "Sinatra est un micro-framework Ruby conçu pour créer rapidement des applications web légères. Contrairement à Ruby on Rails, qui est un framework complet avec une structure bien définie, Sinatra est minimaliste et ne fournit que les fonctionnalités essentielles. Il permet de définir des routes simplement et de manipuler les requêtes HTTP avec une syntaxe concise. Il est idéal pour des projets simples, des APIs REST ou des prototypes rapides."
-  },
-  {
     "id": 2,
     "title": "Les bases de Ruby",
     "content": "Ruby est un langage de programmation interprété, dynamique et entièrement orienté objet. Il a été conçu pour être simple et intuitif, privilégiant la lisibilité et la flexibilité du code. Avec Ruby, tout est un objet, y compris les nombres et les booléens. Il supporte la programmation fonctionnelle, la gestion des exceptions et possède un riche écosystème de bibliothèques, appelées gems."
@@ -28,11 +23,6 @@
     "id": 6,
     "title": "Déploiement d'une application Sinatra",
     "content": "Une application Sinatra peut être déployée sur divers services comme Heroku, Render ou un serveur VPS. Il est recommandé d'utiliser un serveur d'application comme Puma ou Thin pour gérer les requêtes. Pour déployer sur Heroku, on utilise :\n\n```sh\ngit init\ngit add .\ngit commit -m 'Déploiement'\nheroku create mon-app\nheroku git:remote -a mon-app\ngit push heroku main\n```"
-  },
-  {
-    "id": 7,
-    "title": "Utilisation des sessions en Sinatra",
-    "content": "Les sessions permettent de stocker des données côté serveur pour un utilisateur donné. Pour activer les sessions dans Sinatra, on utilise :\n\n```ruby\nenable :sessions\nsession[:utilisateur] = 'Alice'\nputs session[:utilisateur]\n```"
   },
   {
     "id": 8,

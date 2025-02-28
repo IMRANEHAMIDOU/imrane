@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: alphacode
+    runtime: ruby
+    buildCommand: bundle install
+    startCommand: bundle exec rackup -p $PORT
+    env: ruby

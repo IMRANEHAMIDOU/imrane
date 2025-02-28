@@ -32,21 +32,24 @@
 <body class="container mx-auto bg-black text-white py-4 px-4 md:px-20 lg:px-40">
     <div class="w-full mt-6">
         <div class="flex flex-wrap justify-between items-center py-4 gap-4">
-            <a href="/" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
-                Accueil
-            </a>
-            <h1 class="text-xl md:text-3xl font-bold text-center flex-1">Liste des Posts</h1>
-            <a id="addPost" href="/blog/add" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                Ajouter un Post
-            </a>
+            <h1 class="text-xl md:text-3xl font-bold text-center w-full md:w-auto">Liste des Posts</h1>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a href="/" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 text-center">
+                    Accueil
+                </a>
+                <a id="addPost" href="/blog/add" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-center">
+                    Ajouter un Post
+                </a>
+            </div>
         </div>
+
 
         <!-- Liste des posts -->
         <div id="postsList" class="space-y-4">
             <% posts.each do |post| %>
-                <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="bg-gray-900 p-6 rounded-lg shadow-md">
                     <a href="/blog/post/<%=post["id"]%>" class=" text-green-500 text-lg md:text-xl font-semibold mb-2 text-black"><%= post["title"] %></h2>
-                    <p class="text-gray-700 mb-4">
+                    <p class="text-gray-200 mb-4">
                         <%= post["content"][0..100] %>...
                     </p>
                     <div class="flex flex-wrap gap-2">

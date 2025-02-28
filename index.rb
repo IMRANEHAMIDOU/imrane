@@ -125,6 +125,6 @@ get '/blog/post/:id/delet' do
   redirect "/blog"
 end
 
-get "/dashbord" do
+get "/dashboard" do
   erb :dashbord
 end

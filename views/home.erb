@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AphaSoft</title>
+    <title>AphaCode</title>
     <script src="/index.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
         * {
             box-sizing: border-box;
@@ -22,33 +21,36 @@
 <body class="bg-black text-white py-4 px-4 sm:px-8 md:px-20 lg:px-40">
     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-extrabold tracking-wide text-center">Bienvenu sur <span class="text-green-400">AlphaCode</span></h1>
     
-    <div class="profil flex justify-center mt-6">
-        <img src="/imgs/moi.jpeg" alt="Profil" class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-green-400 shadow-lg">
+    <div class="profil flex justify-center mt-6 md:h-40">
+        <img src="/imgs/moi.jpeg" alt="Profil" class="w-32 md:w-40 rounded-full border-4 border-green-400 shadow-lg">
     </div>
     
     <div class="flex flex-col md:flex-row justify-between pt-8 space-y-8 md:space-y-0">
         <div class="backend">
-            <h3 class="text-xl sm:text-2xl md:text-[25px] font-semibold">Projets Backend Ruby</h3>
-            <ul>
-                <li class="p-2 text-base sm:text-lg">
+            <h3 class="text-xl mb-3 sm:text-2xl md:text-[25px] font-semibold">Projets Backend Ruby</h3>
+            <ul class="flex flex-col gap-2">
+                <li class="text-base sm:text-lg">
+                    <a href="/academix">Présentation ACADEMIX</a>
+                </li>
+                <li class="text-base sm:text-lg">
                     <a href="/isogram">Déterminer si un mot ou une phrase est un isogramme ou pas</a>
                 </li>
-                <li class="p-2 text-base sm:text-lg">
+                <li class="text-base sm:text-lg">
                     <a href="/calculator">Une calculatrice simple avec les opérations de base</a>
                 </li>
-                <li class="p-2 text-base sm:text-lg">
+                <li class="text-base sm:text-lg">
                     <a href="/adn">Calculer la distance entre 2 ADN</a>
                 </li>
                 <!-- <li class="p-2 text-base sm:text-lg">
                     <a href="/students">Gestion des élèves</a>
                 </li> -->
-                <li class="p-2 text-base sm:text-lg">
+                <li class="text-base sm:text-lg">
                     <a href="/help">ResistorDecoder</a>
                 </li>
-                <li class="p-2 text-base sm:text-lg">
+                <li class="text-base sm:text-lg">
                     <a href="/recorder">ResistorDecoder 2</a>
                 </li>
-                <li class="p-2 text-base sm:text-lg">
+                <li class="text-base sm:text-lg">
                     <a href="/blog">Blog</a>
                 </li>
             </ul>
@@ -58,6 +60,9 @@
             <ul>
                 <li class="p-2 text-base sm:text-lg">
                     <a href="/dashboard">Dashboard avec Tailwind CSS</a>
+                </li> 
+                <li class="text-base sm:text-lg">
+                    <a href="/tp1js">TP1 JS</a>
                 </li>
             </ul>
         </div>

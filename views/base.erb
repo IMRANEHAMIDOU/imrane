@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaCode</title>
+    <script src="/index.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        * {
+            box-sizing: border-box;
+        }
+        @layer base {
+            li {
+                @apply hover:text-green-400;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white py-4 px-4 sm:px-8 md:px-20 lg:px-40">
+    <header>
+        <h1>Mon Application</h1>
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/">À propos</a>
+        </nav>
+    </header>
+
+    <main>
+        <%= yield %>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mon Application</p>
+    </footer>
+</body>
+</html>

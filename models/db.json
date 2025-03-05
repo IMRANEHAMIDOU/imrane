@@ -52,11 +52,6 @@
   {
     "id": 13,
     "title": "Générer du HTML avec ERB",
-    "content": "ERB permet d’écrire du Ruby dans des fichiers HTML. Exemple :\n\n```html\n<ul>\n  <% @articles.each do |article| %>\n    <li><%= article['title'] %></li>\n  <% end %>\n</ul>\n```"
-  },
-  {
-    "id": 15,
-    "title": "Optimisation des performances en Sinatra",
-    "content": "Quelques astuces pour améliorer la performance d’une application Sinatra :\n- Utiliser la mise en cache des réponses.\n- Employer un serveur d’application performant (Puma, Thin).\n- Compresser les réponses avec Rack::Deflater.\n- Charger les assets en mode asynchrone."
+    "content": "ERB permet d’écrire du Ruby dans des fichiers HTML."
   }
 ]

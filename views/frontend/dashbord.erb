@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AphaSoft</title>
+    <script src="/index.js"></script>
+
+    <style type="text/tailwindcss">
+        @layer components{
+            .all-customers{
+                @apply bg-white rounded-[30px] p-8
+            }
+            .all-customers .top {
+                @apply flex justify-between
+            }
+            .table{
+                @apply min-w-full bg-white border border-gray-300 rounded-lg shadow-sm border-0 mt-8
+            }
+            .th{
+                @apply px-4 py-2 font-semibold text-[#B5B7C0]
+            }
+            .td{
+                @apply px-4 py-2 text-[#292D32]
+            }
+            .border-t{
+                @apply  border-[#EEEEEE] h-[50px]
+            }
+            .btn{
+                @apply px-4 py-2 text-black rounded bg-[#F5F5F5]
+            }
+            .btn.active{
+                @apply bg-[#5932EA] text-white
+            }
+            .statut{
+                @apply px-4 py-1 text-[14px] border-1 rounded block w-[90px] text-center
+            }
+            .statut.active{
+                @apply bg-[#16C09861] border-[#00B087]  text-[#00B087]
+            }
+            .statut.inactive{
+                @apply bg-[#FFC5C5] border-[##DF0404] text-[#DF0404]
+            }
+            .head{
+                @apply grid
+            }
+        }
+    </style>
+</head>
+
+<body class="w-full h-screen flex">
+    <header class="w-[306px] h-screen p-[20px] flex flex-col items-center bg-zinc-50 ">
+        <div class="flex gap-3 items-center font-bold text-[20px] gap-3 mt-[10px] w-[231px] h-[24px]">
+            <img class="text-[10px]" src="icons/setting 1.png" alt="">
+            <h1>Dashboard</h1>
+            <h2 class="text-[#757575] w-[18px] h-[16px] text-[10px]">V.01</h2>
+        </div>
+
+        <div class="mt-[50px] flex flex-col justify-between items-center gap-7">
+            <div class="flex gap-3 items-center w-[231px] h-[24px]">
+                <img src="icons/key-square.png" alt="">
+                <h2>Dashboard</h2>
+            </div>
+            <div class="flex flex-col justify-between items-center gap-6">
+                <div class="w-[231px] h-[24px] flex justify-between items-center ">
+                    <div class="flex justify-between gap-3">
+                        <img src="icons/3d-square 1.png" alt="">
+                        <h2>Product</h2>
+                    </div>
+                    <img src="icons/Vector2.svg" alt="">
+                </div>
+                <div class=" w-[250px] h-[46px] flex justify-between items-center bg-[#5932EA] rounded-2xl p-[12px]">
+                    <div class="flex justify-between gap-3">
+                        <img src="icons/user-square 1.png" alt="">
+                        <h2 class="text-white">Customers</h2>
+                    </div>
+                    <img src="icons/chevron-right 2.png" alt="">
+                </div>
+                <div class="w-[231px] h-[24px] flex justify-between items-center">
+                    <div class="flex justify-between gap-3">
+                        <img src="icons/wallet-money 2.png" alt="">
+                        <h2>Income</h2>
+                    </div>
+                    <img src="icons/Vector2.svg" alt="">
+                </div>
+                <div class="w-[231px] h-[24px] flex justify-between items-center">
+                    <div class="flex justify-between gap-3">
+                        <img src="icons/discount-shape 1.png" alt="">
+                        <h2>Promate</h2>
+                    </div>
+                    <img src="icons/Vector2.svg" alt="">
+                </div>
+                <div class="w-[231px] h-[24px] flex justify-between items-center">
+                    <div class="flex justify-between gap-3">
+                        <img src="icons/message-question 1.png" alt="">
+                        <h2>Help</h2>
+                    </div>
+                    <img src="icons/Vector2.svg" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-[200px]">
+            <div
+                class="w-[250px] h-[150px] flex flex-col bg-gradient-to-r from-[#EAABF0]  to-[#4623E9]   p-[28px] rounded-2xl items-center gap-3">
+                <p class="text-white text-center text-[17px]">Upgrade to PRO to get access all Features!</p>
+                <div class="w-[203px] h-[40px] bg-zinc-50 p-[15px] flex justify-center items-center rounded-2xl">
+                    <h1>Get Pro Now!</h1>
+                </div>
+            </div>
+
+            <div class="flex justify-between w-[250px] h-[100px] items-center">
+                <div class="flex items-center gap-3 justify-between items-center">
+                    <img class="w-[42px] h-[42px] rounded-full" src="icons/1740650815345.jpg" alt="">
+                    <div class="w-[101px] h-[38px] flex flex-col">
+                        <h1 class="text-[14px] font-bold">Imrane</h1>
+                        <h2 class="text-[12px] text-[#757575]">Project Manager</h2>
+                    </div>
+                </div>
+                <img class="w-[24px] h-[24px]" src="icons/chevron-down 2.svg" alt="">
+            </div>
+        </div>
+
+    </header>
+
+    <section class="w-full p-[28px] flex flex-col bg-[#FAFBFF]">
+        <div class="flex flex-col justify-between gap-3">
+            <div class="flex justify-between">
+                <h1 class="text-[24px]">Hello Evano 👋🏼,</h1>
+                <div class="search bg-[#FFFFFF] w-[216px] h-[38] rounded-[10px] flex items-center">
+                    <img src="/icons/search.svg" alt="" class="h-[24px] w-[24px] p-1">
+                    <input type="text" placeholder="search" class="h-[24px]">
+                </div>
+            </div>
+            <div class="flex justify-between p-[30px] w-full rounded">
+                <div class="flex w-[30%] gap-5 bg-white">
+                    <img src="icons/Group 10.png" alt="" class="h-[100px] w-[100px]">
+                    <div class="flex flex-col gap-1">
+                        <h1 class="text-[#757575] text-[16px]">Total Customers</h1>
+                        <p class="font-bold text-black text-[25px]">5,4423</p>
+                        <div class="flex justify-between gap-1">
+                            <img src="icons/arrow-up 1.png" alt="">
+                            <h1><span class="text-green-600 font-bold">16%</span> this month</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex w-[30%] gap-5 bg-white rounded">
+                    <img src="icons/Group 11.png" alt="">
+                    <div class="flex flex-col gap-1">
+                        <h1 class="text-[#757575] text-[16px]">Members</h1>
+                        <p class="font-bold text-black text-[25px]">1,4423</p>
+                        <div class="flex justify-between gap-1">
+                            <img src="icons/arrow-up 2.png" alt="">
+                            <h1><span class="text-red-600 font-bold">1%</span> this month</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex w-[30%] gap-5 bg-white rounded">
+                    <img src="icons/Group 12.png" alt="">
+                    <div class="flex flex-col gap-1">
+                        <h1 class="text-[#757575] text-[16px]">Active Now</h1>
+                        <p class="font-bold text-black text-[25px]">189</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="all-customers">
+            <div class="top">
+                <div class="left">
+                    <h1 class="text-[22px] text-600 text-black">All Customers</h1>
+                    <span class="text-[14px] text-[#16C098] text-[400]">Active Members</span>
+                </div>
+                <div class="right flex gap-2">
+                    <div class="search bg-[#F9FBFF] w-[216px] h-[38px] rounded-[10px] flex items-center">
+                        <img src="icons/search.svg" alt="" class="h-[24px] w-[24px] p-1">
+                        <input type="text" placeholder="search" class="h-[24px]">
+                    </div>
+                    <div class="bg-[#F9FBFF] w-[154px] h-[38px] rounded-lg flex items-center px-2 relative">
+                        <select name="shot" class="bg-transparent outline-none text-sm w-full appearance-none pr-6">
+                            <option value="#">Short by : Newest</option>
+                        </select>
+                        <img src="icons/fleche-bas.svg" alt="Icône flèche bas"
+                            class="w-4 h-4 absolute right-2 pointer-events-none">
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr class="text-left">
+                        <th class="th">Customer Name</th>
+                        <th class="th">Company</th>
+                        <th class="th">Phone Number</th>
+                        <th class="th">Email</th>
+                        <th class="th">Country</th>
+                        <th class="th">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-t">
+                        <td class="td">Jane Cooper</td>
+                        <td class="td">Microsoft</td>
+                        <td class="td">(225) 555-0118</td>
+                        <td class="td">jane@microsoft.com</td>
+                        <td class="td">United States</td>
+                        <td class="px-4 py-2">
+                            <span class="statut active">Active</span>
+                        </td>
+                    </tr>
+                    <tr class="border-t">
+                        <td class="td">Jane Cooper</td>
+                        <td class="td">Microsoft</td>
+                        <td class="td">(225) 555-0118</td>
+                        <td class="td">jane@microsoft.com</td>
+                        <td class="td">United States</td>
+                        <td class="px-4 py-2">
+                            <span class="statut inactive">Inactive</span>
+                        </td>
+                    </tr>
+                    <tr class="border-t">
+                        <td class="td">Jane Cooper</td>
+                        <td class="td">Microsoft</td>
+                        <td class="td">(225) 555-0118</td>
+                        <td class="td">jane@microsoft.com</td>
+                        <td class="td">United States</td>
+                        <td class="px-4 py-2">
+                            <span class="statut active">Active</span>
+                        </td>
+                    </tr>
+                    <tr class="border-t">
+                        <td class="td">Jane Cooper</td>
+                        <td class="td">Microsoft</td>
+                        <td class="td">(225) 555-0118</td>
+                        <td class="td">jane@microsoft.com</td>
+                        <td class="td">United States</td>
+                        <td class="px-4 py-2">
+                            <span class="statut inactive">Inactive</span>
+                        </td>
+                    </tr>
+                    <tr class="border-t">
+                        <td class="td">Jane Cooper</td>
+                        <td class="td">Microsoft</td>
+                        <td class="td">(225) 555-0118</td>
+                        <td class="td">jane@microsoft.com</td>
+                        <td class="td">United States</td>
+                        <td class="px-4 py-2">
+                            <span class="statut active">Active</span>
+                        </td>
+                    </tr>
+                    <tr class="border-t">
+                        <td class="td">Jane Cooper</td>
+                        <td class="td">Microsoft</td>
+                        <td class="td">(225) 555-0118</td>
+                        <td class="td">jane@microsoft.com</td>
+                        <td class="td">United States</td>
+                        <td class="px-4 py-2">
+                            <span class="statut inactive">Inactive</span>
+                        </td>
+                    </tr>
+                    <tr class="border-t">
+                        <td class="td">Jane Cooper</td>
+                        <td class="td">Microsoft</td>
+                        <td class="td">(225) 555-0118</td>
+                        <td class="td">jane@microsoft.com</td>
+                        <td class="td">United States</td>
+                        <td class="px-4 py-2">
+                            <span class="statut active">Active</span>
+                        </td>
+                    </tr>
+                    <tr class="border-t">
+                        <td class="td">Jane Cooper</td>
+                        <td class="td">Microsoft</td>
+                        <td class="td">(225) 555-0118</td>
+                        <td class="td">jane@microsoft.com</td>
+                        <td class="td">United States</td>
+                        <td class="px-4 py-2">
+                            <span class="statut inactive">Inactive</span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="">
+                        <td colspan="6" class="px-4 py-2 text-gray-600">
+                            <div class="w-full flex justify-between items-center">
+                                <p>Showing data 1 to 8 of 256K entries</p>
+                                <div class="pagination flex items-center space-x-2 mt-2">
+                                    <button class="back btn">
+                                        < </button>
+                                            <button class="btn active ">1</button>
+                                            <button class="btn">2</button>
+                                            <button class="btn">3</button>
+                                            <button class="btn">4</button>
+                                            <span class="text-gray-500">...</span>
+                                            <button class="btn">40</button>
+                                            <button class="next btn">></button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </section>
+
+</html>

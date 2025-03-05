@@ -2,8 +2,8 @@
 require 'sinatra'
 require './fonctions'
 require './models/post'
-require 'sinatra/reloader' if development?
 
+require 'sinatra/reloader' if development?
 
 
 configure :development do
@@ -23,7 +23,6 @@ post '/isogram' do
   iso = verif_isogram(world)
   erb :isogram, locals: { iso: iso, world: world }
 end
-
 
 get '/calculator' do
   expression = params[:expression]
@@ -83,28 +82,15 @@ post "/blog/add" do
   end
 end
 
-#edition dun post
 get '/blog/post/:id/edit' do
   post_id = params[:id].to_i
   post = $posts.find { |post| post["id"] == post_id }
   if post
     erb :form_post, locals: { post: post, erreur:'', add:false}
   else
-    puts "Post non trouvé !" 
+    "Post non trouvé !" 
   end
 end
-
-#edition dun post
-get '/blog/post/:id' do
-  post_id = params[:id].to_i
-  post = $posts.find { |post| post["id"] == post_id }
-  if post
-    erb :show, locals: { post: post}
-  else
-    puts "Post non trouvé !" 
-  end
-end
-
 #persistence la l'edition
 post '/blog/post/:id/edit' do
   post_id = params[:id].to_i
@@ -117,6 +103,15 @@ post '/blog/post/:id/edit' do
   end
 end
 
+get '/blog/post/:id' do
+  post_id = params[:id].to_i
+  post = $posts.find { |post| post["id"] == post_id }
+  if post
+    erb :show, locals: { post: post}
+  else
+    puts "Post non trouvé !" 
+  end
+end
 
 get '/blog/post/:id/delet' do
   post_id = params[:id].to_i
@@ -126,5 +121,9 @@ get '/blog/post/:id/delet' do
 end
 
 get "/dashboard" do
-  erb :dashbord
+  erb :"frontend/dashbord"
+end
+
+get '/tp1js' do
+  erb :"frontend/tp1js"
 end

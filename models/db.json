@@ -1,57 +1,156 @@
-[
-  {
-    "id": 2,
-    "title": "Les bases de Ruby",
-    "content": "Ruby est un langage de programmation interprété, dynamique et entièrement orienté objet. Il a été conçu pour être simple et intuitif, privilégiant la lisibilité et la flexibilité du code. Avec Ruby, tout est un objet, y compris les nombres et les booléens. Il supporte la programmation fonctionnelle, la gestion des exceptions et possède un riche écosystème de bibliothèques, appelées gems."
-  },
-  {
-    "id": 3,
-    "title": "Gestion des routes avec Sinatra",
-    "content": "Dans Sinatra, les routes permettent de définir les points d’entrée de l’application. Une route est généralement associée à une méthode HTTP (`GET`, `POST`, `PUT`, `DELETE`) et à un bloc de code qui s’exécute lorsque cette route est appelée. Par exemple :\n\n```ruby\nget '/bonjour' do\n  'Bonjour, monde!'\nend\n```\n\nOn peut aussi récupérer des paramètres dynamiques en utilisant des placeholders comme `/:id`."
-  },
-  {
-    "id": 4,
-    "title": "Stockage des données en JSON",
-    "content": "Le format JSON (JavaScript Object Notation) est couramment utilisé pour stocker et échanger des données entre un client et un serveur. En Ruby, la bibliothèque standard `json` permet de manipuler facilement des fichiers JSON. On peut lire et écrire des fichiers JSON en utilisant `File.read` et `File.write`. Dans une application Sinatra sans base de données, stocker les données en JSON est une alternative simple et efficace."
-  },
-  {
-    "id": 5,
-    "title": "Utilisation d'ERB avec Sinatra",
-    "content": "ERB (Embedded Ruby) est un moteur de templates intégré à Ruby qui permet d’inclure du code Ruby dans du HTML. Il est souvent utilisé avec Sinatra pour générer des vues dynamiques. Un fichier `.erb` peut contenir du Ruby entre des balises `<% %>` pour l’exécution de code et `<%= %>` pour afficher du contenu :\n\n```html\n<h1>Bienvenue, <%= @nom %>!</h1>\n```"
-  },
-  {
-    "id": 6,
-    "title": "Déploiement d'une application Sinatra",
-    "content": "Une application Sinatra peut être déployée sur divers services comme Heroku, Render ou un serveur VPS. Il est recommandé d'utiliser un serveur d'application comme Puma ou Thin pour gérer les requêtes. Pour déployer sur Heroku, on utilise :\n\n```sh\ngit init\ngit add .\ngit commit -m 'Déploiement'\nheroku create mon-app\nheroku git:remote -a mon-app\ngit push heroku main\n```"
-  },
-  {
-    "id": 8,
-    "title": "Mise en place d'un système d'authentification",
-    "content": "L’authentification dans une application Sinatra peut être gérée via des sessions et des mots de passe hashés avec BCrypt. Une approche classique consiste à vérifier les identifiants de l’utilisateur et à stocker son ID dans la session après connexion."
-  },
-  {
-    "id": 9,
-    "title": "Manipulation des fichiers JSON en Ruby",
-    "content": "Ruby permet de lire et d’écrire des fichiers JSON avec la bibliothèque `json`.\n\n```ruby\nrequire 'json'\ndata = JSON.parse(File.read('db.json'))\ndata << { 'id' => 16, 'title' => 'Nouveau post', 'content' => 'Contenu détaillé...' }\nFile.write('db.json', JSON.pretty_generate(data))\n```"
-  },
-  {
-    "id": 10,
-    "title": "Les middlewares dans Sinatra",
-    "content": "Les middlewares sont des composants qui interceptent les requêtes avant qu'elles n’atteignent l’application. Ils peuvent être utilisés pour l’authentification, la gestion des logs ou la compression des réponses. Sinatra permet d’ajouter des middlewares avec `use`."
-  },
-  {
-    "id": 11,
-    "title": "Créer une API REST avec Sinatra",
-    "content": "Sinatra est souvent utilisé pour créer des APIs REST. Une API simple pour gérer des articles ressemblerait à :\n\n```ruby\nget '/articles' do\n  content_type :json\n  JSON.generate(Article.all)\nend\n```"
-  },
-  {
-    "id": 12,
-    "title": "Les paramètres URL et formulaires en Sinatra",
-    "content": "On récupère les paramètres passés dans l’URL avec `params` :\n\n```ruby\nget '/hello/:name' do\n  \"Bonjour #{params[:name]}!\"\nend\n```\n\nPour les formulaires, on utilise :\n\n```ruby\npost '/submit' do\n  \"Vous avez envoyé : #{params[:message]}\"\nend\n```"
-  },
-  {
-    "id": 13,
-    "title": "Générer du HTML avec ERB",
-    "content": "ERB permet d’écrire du Ruby dans des fichiers HTML."
-  }
-]
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Les bienfaits de la méditation",
+      "content": "La méditation est une pratique ancienne qui offre de nombreux avantages pour la santé mentale et physique. Elle aide à réduire le stress, améliorer la concentration et favoriser un sentiment de bien-être général. Dans cet article, nous explorons les différentes techniques de méditation et comment les intégrer dans votre routine quotidienne."
+    },
+    {
+      "id": 2,
+      "title": "Voyage au Japon : mes impressions",
+      "content": "Le Japon est un pays fascinant, mélange de tradition et de modernité. Lors de mon voyage, j'ai été impressionné par la gentillesse des habitants, la beauté des temples et la délicieuse cuisine locale. Découvrez mes coups de cœur et conseils pour organiser votre propre voyage au Japon."
+    },
+    {
+      "id": 3,
+      "title": "Les secrets d'une alimentation saine",
+      "content": "Une alimentation équilibrée est essentielle pour maintenir une bonne santé. Dans cet article, nous discutons des principes de base d'une alimentation saine, des aliments à privilégier et de ceux à éviter. Nous partageons également des idées de recettes simples et nutritives."
+    },
+    {
+      "id": 4,
+      "title": "Les meilleures applications pour apprendre une langue",
+      "content": "Apprendre une nouvelle langue est plus facile que jamais grâce aux applications mobiles. Dans cet article, nous passons en revue les meilleures applications pour apprendre des langues comme l'anglais, l'espagnol ou le japonais. Nous comparons leurs fonctionnalités, leurs prix et leurs méthodes d'apprentissage."
+    },
+    {
+      "id": 5,
+      "title": "Les avantages du télétravail",
+      "content": "Le télétravail est devenu une norme pour de nombreuses entreprises. Dans cet article, nous explorons les avantages du travail à distance, comme une meilleure flexibilité, une réduction du temps de transport et une amélioration de l'équilibre entre vie professionnelle et personnelle."
+    },
+    {
+      "id": 6,
+      "title": "Comment démarrer un potager chez soi",
+      "content": "Cultiver ses propres légumes est une activité gratifiante et écologique. Dans cet article, nous vous guidons étape par étape pour démarrer un potager chez vous, du choix des plantes à l'entretien quotidien. Nous partageons également des astuces pour maximiser votre récolte."
+    },
+    {
+      "id": 7,
+      "title": "Les tendances technologiques de 2023",
+      "content": "2023 est une année riche en innovations technologiques. Dans cet article, nous explorons les tendances majeures, comme l'intelligence artificielle, la réalité augmentée et les véhicules électriques. Découvrez comment ces technologies pourraient changer notre quotidien."
+    },
+    {
+      "id": 8,
+      "title": "Les meilleurs livres à lire cet été",
+      "content": "L'été est la saison idéale pour se plonger dans un bon livre. Dans cet article, nous vous proposons une sélection de livres variés, allant des romans policiers aux essais inspirants. Que vous soyez à la plage ou chez vous, il y en a pour tous les goûts."
+    },
+    {
+      "id": 9,
+      "title": "Les bienfaits du yoga",
+      "content": "Le yoga est bien plus qu'une simple activité physique. Il combine des postures, des exercices de respiration et de méditation pour améliorer la santé globale. Dans cet article, nous explorons les bienfaits du yoga pour le corps et l'esprit, ainsi que des conseils pour débuter."
+    },
+    {
+      "id": 10,
+      "title": "Comment économiser de l'argent au quotidien",
+      "content": "Économiser de l'argent peut sembler difficile, mais avec les bonnes stratégies, c'est tout à fait réalisable. Dans cet article, nous partageons des astuces simples pour réduire vos dépenses quotidiennes, comme faire un budget, cuisiner à la maison et acheter d'occasion."
+    },
+    {
+      "id": 11,
+      "title": "Les destinations de rêve pour 2024",
+      "content": "Vous planifiez déjà vos vacances pour l'année prochaine ? Dans cet article, nous vous présentons les destinations de rêve à visiter en 2024, des plages paradisiaques aux villes culturelles. Découvrez nos recommandations et commencez à organiser votre voyage."
+    },
+    {
+      "id": 12,
+      "title": "Les bienfaits de la lecture",
+      "content": "La lecture est une activité enrichissante qui stimule l'esprit et réduit le stress. Dans cet article, nous explorons les nombreux avantages de la lecture, comme l'amélioration de la concentration, l'élargissement des connaissances et le développement de l'empathie."
+    },
+    {
+      "id": 13,
+      "title": "Comment rester motivé pour faire du sport",
+      "content": "Rester motivé pour faire du sport peut être un défi. Dans cet article, nous partageons des conseils pratiques pour maintenir votre motivation, comme fixer des objectifs réalistes, varier vos entraînements et trouver un partenaire d'exercice."
+    },
+    {
+      "id": 14,
+      "title": "Les meilleurs podcasts à écouter en 2023",
+      "content": "Les podcasts sont un excellent moyen d'apprendre et de se divertir. Dans cet article, nous vous proposons une sélection des meilleurs podcasts de 2023, couvrant des sujets variés comme l'histoire, la science, la culture et le développement personnel."
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "content": "La méditation a vraiment changé ma vie, merci pour cet article !",
+      "post_id": 1
+    },
+    {
+      "id": 2,
+      "content": "Je pratique la méditation depuis un an et je me sens tellement plus calme.",
+      "post_id": 1
+    },
+    {
+      "id": 3,
+      "content": "Le Japon est un de mes rêves, merci pour les conseils !",
+      "post_id": 2
+    },
+    {
+      "id": 4,
+      "content": "J'ai adoré cet article, ça m'a donné envie de voyager.",
+      "post_id": 2
+    },
+    {
+      "id": 5,
+      "content": "Je vais essayer ces recettes, elles ont l'air délicieuses !",
+      "post_id": 3
+    },
+    {
+      "id": 6,
+      "content": "Merci pour les conseils, c'est très utile.",
+      "post_id": 3
+    },
+    {
+      "id": 7,
+      "content": "J'utilise déjà Duolingo, mais je vais essayer les autres applications.",
+      "post_id": 4
+    },
+    {
+      "id": 8,
+      "content": "Le télétravail m'a permis de mieux gérer mon temps.",
+      "post_id": 5
+    },
+    {
+      "id": 9,
+      "content": "J'ai commencé un potager grâce à vos conseils, merci !",
+      "post_id": 6
+    },
+    {
+      "id": 10,
+      "content": "Les tendances technologiques sont fascinantes, surtout l'IA.",
+      "post_id": 7
+    },
+    {
+      "id": 11,
+      "content": "J'ai lu plusieurs livres de votre liste, ils sont excellents !",
+      "post_id": 8
+    },
+    {
+      "id": 12,
+      "content": "Le yoga m'a aidé à réduire mon stress, je recommande.",
+      "post_id": 9
+    },
+    {
+      "id": 13,
+      "content": "Merci pour les astuces, je vais essayer d'économiser plus.",
+      "post_id": 10
+    },
+    {
+      "id": 14,
+      "content": "J'ai déjà réservé mon voyage pour l'une des destinations !",
+      "post_id": 11
+    },
+    {
+      "id": 15,
+      "content": "La lecture est ma passion, cet article est génial.",
+      "post_id": 12
+    },
+    {
+      "id": 16,
+      "content": "Je vous en pris",
+      "post_id": 1
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Citations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-r from-purple-500 to-indigo-600 h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-lg mx-4">
+        <h1 class="text-4xl font-semibold text-center text-gray-800 mb-6">Générateur de Citations</h1>
+        <div id="quote-container" class="mb-6 text-center text-xl font-italic text-gray-600">
+            <p id="citations" class="text-gray-800"></p>
+        </div>
+        <div class="flex justify-center">
+            <button id="generate-btn"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">
+                Nouvelle Citation
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const apiUrl = "https://zenquotes.io/api/quotes/"
+
+        const citations = [
+            '"L’avenir appartient à ceux qui croient à la beauté de leurs rêves." - Eleanor Roosevelt',
+            '"La vie est ce qui se passe quand vous êtes occupé à faire d’autres projets." - John Lennon',
+            '"Soyez vous-même; tout le monde est déjà pris." - Oscar Wilde',
+            '"Le succès, c’est d’aller d’échec en échec sans perdre son enthousiasme." - Winston Churchill',
+            '"Il n’y a pas de réussite sans échec." - Michael Jordan',
+            '"Ne rêvez pas votre vie, vivez vos rêves." - Anonyme',
+            '"Tout ce que vous pouvez imaginer est réel." - Pablo Picasso',
+            '"Les seules limites de nos réalisations de demain sont nos doutes et nos hésitations d’aujourd’hui." - Franklin D. Roosevelt'
+        ];
+
+        fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+        function generate() {
+            const index = Math.floor(Math.random() * citations.length);
+            document.getElementById('citations').textContent = citations[index];
+        }
+
+        generate()
+
+        document.getElementById('generate-btn').addEventListener('click', generate);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaCode - Bank Système</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-white flex flex-col min-h-screen md:px-4">
+
+    <header class="text-center mt-10">
+        <div class="flex justify-center items-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-wide flex items-center text-center">
+                <a href="/" class="mr-4 text-green-400 hover:text-green-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                    </svg>
+                </a>
+                 Gestion <span class="text-green-400">Bancaire</span>
+            </h1>
+        </div>
+    </header>
+
+    <section class="flex justify-center mt-8">
+        <img src="/imgs/moi.png" 
+             alt="Photo de profil"
+             class="h-32 md:h-40 rounded-[20px] border-1 border-green-400 shadow-lg">
+    </section>
+
+    <% if @success_message %>
+        <div class="bg-green-500 text-white p-4 mb-4 rounded-lg">
+            <%= @success_message %>
+        </div>
+    <% end %>
+
+    <% if @error_message %>
+        <div class="bg-red-500 text-white p-4 mb-4 rounded-lg">
+            <%= @error_message %>
+        </div>
+    <% end %>
+
+    <main class="mt-10 grid grid-cols-1 md:grid-cols-1 gap-10 flex-grow">
+
+        <section class="bg-gray-900 p-6 rounded-xl shadow-lg">
+            <div class="flex flex-col">
+                <h3 class="text-2xl font-semibold mb-4 text-green-400 flex items-center justify-between">
+                    Utilisateurs
+                    <button onclick="openUserModal()" class="px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg text-white">
+                        Ajouter
+                    </button>
+                </h3>
+                <form class="mb-4" action="/bank">
+                        <input type="text" name="name"
+                            class="mt-1 p-2 w-full bg-gray-800 rounded-lg text-white" placeholder="nom utilisateur"
+                            >
+                    </form>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 text-left">#</th>
+                            <th class="px-4 py-2 text-left">Nom</th>
+                            <th class="px-4 py-2 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-list">
+                        <%users.each_with_index do |user, i|%>
+                        <tr class="hover:bg-gray-700 h-20">
+                            <td class="px-4 py-2"><%= i + 1 %> </td>
+                            <td class="px-4 py-2"><%= user.name %> </td>
+                            <td class="px-4 py-2">
+                                <a href="/bank/user/<%= user.id %>/create_account" class="inline-block px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg">
+                                    Ajouter un compte
+                                </a>
+                                <a href="/bank/user/<%=user.id%>" class="px-4 py-2 inline-block ml-2 bg-blue-400 hover:bg-blue-500 rounded-lg">
+                                    Afficher
+                                </a>
+                            </td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Les comptes -->
+        <section class="bg-gray-900 p-6 rounded-xl shadow-lg">
+            <div class="flex flex-col">
+                <h3 class="text-2xl font-semibold  text-green-400">
+                    Comptes
+                </h3>
+                <form class="mb-4" action="/bank">
+                    <input type="text" name="account_number"
+                        class="mt-1 p-2 w-full bg-gray-800 rounded-lg text-white" placeholder="numéro du compte"
+                        >
+                </form>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 text-left">#</th>
+                            <th class="px-4 py-2 text-left">Numéro</th>
+                            <th class="px-4 py-2 text-left">Solde</th>
+                            <th class="px-4 py-2 text-left">Propriétaire</th>
+                            <th class="px-4 py-2 text-left">Statut</th>
+                            <th class="px-4 py-2 text-left">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="accounts-list">
+                        <% accounts.each_with_index do |account, i| %>
+                            <tr class="hover:bg-gray-700">
+                                <td class="px-4 py-2"><%= i + 1 %></td>
+                                <td class="px-4 py-2"><%= account.number %></td>
+                                <td class="px-4 py-2"><%= account.balance %> FCFA</td>
+                                <td class="px-4 py-2"><%= account.user.name %></td>
+                                <td class="px-4 py-2">
+                                    <span class="px-2 py-1 rounded-full <%= account.state ? 'bg-green-500' : 'bg-red-500' %>">
+                                        <%= account.state ? 'Actif' : 'Inactif' %>
+                                    </span>
+                                </td>
+                                <td class="px-4 py-2 flex space-x-2">
+                                    <a href="/bank/account/<%= account.id %>/setstate"
+                                    class="p-2 inline-block mt-[2px] rounded <%= account.state ? 'bg-red-500 hover:bg-red-600' : 'bg-gray-500' %>"
+                                    >
+                                    <%= account.state ? 'désactivé' : 'Activé' %>
+                                    </a>
+
+                                    <% if(account.state) %>
+                                        <button onclick="openModal(<%= account.id %>, 'Dépot')"
+                                                class="p-2 bg-green-500 hover:bg-green-600 rounded">
+                                            Déposer
+                                        </button>
+
+                                        <button onclick="openModal(<%= account.id %>, 'Retrait')"
+                                                class="p-2 bg-blue-500 hover:bg-blue-600 rounded">
+                                            Retirer
+                                        </button>
+                                    <% end %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Les opération -->
+        <section class="bg-gray-900 p-6 rounded-xl shadow-lg col-span-full">
+            <h3 class="text-2xl font-semibold mb-4 text-green-400">
+                Opérations
+            </h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2 text-left">#</th>
+                            <th class="px-4 py-2 text-left">Type</th>
+                            <th class="px-4 py-2 text-left">Montant</th>
+                            <th class="px-4 py-2 text-left">Compte</th>
+                        </tr>
+                    </thead>
+                    <tbody id="operations-list">
+                        <% operations.each_with_index do |op, i| %>
+                        <tr>
+                            <td class="px-4 py-2 text-left"><%= i+1 %></td>
+                            <td class="px-4 py-2 text-left"><%= op.typ %></td>
+                            <td class="px-4 py-2 text-left"><%= op.amount %></td>
+                            <td class="px-4 py-2 text-left"><%= op.account.number %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Modale pour les opérations -->
+    <div id="operationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center">
+        <div class="bg-gray-900 p-6 rounded-lg w-96">
+            <h3 class="text-2xl font-semibold mb-4 text-green-400" id="modalTitle"></h3>
+            <form id="operationForm" action="/bank/operation" method="post">
+                <input type="hidden" id="accountId" name="account_id">
+                <input type="hidden" id="operationType" name="type">
+
+                <div class="mb-4">
+                    <label for="amount" class="block text-sm font-medium text-gray-300">Montant</label>
+                    <input type="number" id="amount" name="amount"
+                        class="mt-1 p-2 w-full bg-gray-800 rounded-lg text-white"
+                        required>
+                </div>
+
+                <div class="flex justify-end space-x-2">
+                    <button type="button" onclick="closeModal()"
+                            class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg">
+                        Annuler
+                    </button>
+                    <button type="submit"
+                            class="px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg">
+                        Confirmer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modale pour ajouter un utilisateur -->
+    <div id="userModal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center">
+        <div class="bg-gray-900 p-6 rounded-lg w-96">
+            <h3 class="text-2xl font-semibold mb-4 text-green-400">Ajouter un utilisateur</h3>
+            <form id="userForm" action="/bank/add_user" method="post">
+                <div class="mb-4">
+                    <label for="userName" class="block text-sm font-medium text-gray-300">Nom</label>
+                    <input type="text" id="userName" name="name"
+                        class="mt-1 p-2 w-full bg-gray-800 rounded-lg text-white"
+                        required>
+                </div>
+                <div class="flex justify-end space-x-2">
+                    <button type="button" onclick="closeUserModal()"
+                            class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg">
+                        Annuler
+                    </button>
+                    <button type="submit"
+                            class="px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg">
+                        Confirmer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-center text-white py-4 mt-10">
+        &copy; 2025 AphaCode - Tous droits réservés
+    </footer>
+
+    
+    <script>
+        // Fonction pour ouvrir la modale
+        function openModal(accountId, type) {
+            const modal = document.getElementById('operationModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const accountIdInput = document.getElementById('accountId');
+            const operationTypeInput = document.getElementById('operationType');
+
+            // Préremplir les champs
+            modalTitle.textContent = `${type} sur le compte`;
+            accountIdInput.value = accountId;
+            operationTypeInput.value = type;
+
+            // Afficher la modale
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // Fonction pour fermer la modale
+        function closeModal() {
+            const modal = document.getElementById('operationModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        // Fonctions pour la modale d'utilisateur
+        function openUserModal() {
+            const modal = document.getElementById('userModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeUserModal() {
+            const modal = document.getElementById('userModal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>

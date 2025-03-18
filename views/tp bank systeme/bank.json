@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Carlos"
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "account_number": 85002,
+      "account_state": true,
+      "account_blance": 90000,
+      "user": 1
+    },
+    {
+      "id": 2,
+      "account_number": 85003,
+      "account_state": false,
+      "account_blance": 0,
+      "user": 1
+    }
+  ],
+  "operations": [
+    {
+      "id": 1,
+      "typ": "Dépot",
+      "amount": 30000,
+      "account": 1
+    },
+    {
+      "id": 1,
+      "typ": "Dépot",
+      "amount": 50000,
+      "account": 1
+    },
+    {
+      "id": 1,
+      "typ": "Dépot",
+      "amount": 10000,
+      "account": 1
+    }
+  ]
+}

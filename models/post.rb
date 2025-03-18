@@ -1,9 +1,16 @@
 require 'json'
 
-$db = './models/db.json'
+$file = './models/db.json'
 
-$posts = JSON.parse(File.read($db))
+$db = JSON.parse(File.read($file))
+$posts = $db['posts']
+$comments =  $db['comments']
 
 def index()
   return $posts
+end
+
+def refresh_db(posts,comments)
+  $db = {posts: posts, comments: comments}
+  File.write($file, JSON.pretty_generate($db))
 end

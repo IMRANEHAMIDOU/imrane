@@ -6,6 +6,7 @@ def verif_isogram(mots)
   if mots==nil
     return false
   end
+  
   letters = mots.downcase.chars
   
   letters.each do |lettre|

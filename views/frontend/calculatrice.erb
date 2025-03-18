@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer components{
+            .btn{
+                @apply w-10 h-10 hover:bg-green-400 rounded-lg
+            }
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen bg-gray-800">
+    <div class="bg-white p-4 rounded-lg shadow-lg w-80">
+        <div class="mb-4 rounded-lg">
+            <div id="display" class="w-full h-20 text-right text-2xl font-bold p-4 bg-gray-200"></div>
+            <div id="result" class="w-full h-20 text-right text-2xl font-bold p-4 bg-gray-200 border-t border-grey-500">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4">
+            <button class="btn" onclick="addToDisplay('7')">7</button>
+            <button class="btn" onclick="addToDisplay('8')">8</button>
+            <button class="btn" onclick="addToDisplay('9')">9</button>
+            <button class="btn" onclick="addToDisplay('/')">/</button>
+
+            <button class="btn" onclick="addToDisplay('4')">4</button>
+            <button class="btn" onclick="addToDisplay('5')">5</button>
+            <button class="btn" onclick="addToDisplay('6')">6</button>
+            <button class="btn" onclick="addToDisplay('*')">*</button>
+
+            <button class="btn" onclick="addToDisplay('1')">1</button>
+            <button class="btn" onclick="addToDisplay('2')">2</button>
+            <button class="btn" onclick="addToDisplay('3')">3</button>
+            <button class="btn" onclick="addToDisplay('-')">-</button>
+
+            <button class="btn" onclick="addToDisplay('0')">0</button>
+            <button class="btn" onclick="clearDisplay()">C</button>
+            <button class="btn" onclick="">=</button>
+            <button class="btn" onclick="addToDisplay('+')">+</button>
+        </div>
+    </div>
+
+    <script>
+        display = document.getElementById('display')
+        result = document.getElementById('result')
+
+        function addToDisplay(value) {
+            display.innerHTML += value;
+            try {
+                result.innerHTML = eval(display.innerHTML);
+            } catch {
+
+            }
+        }
+
+        function clearDisplay() {
+            display.innerHTML = '';
+            result.innerHTML = '0';
+        }
+    </script>
+</body>
+
+</html>

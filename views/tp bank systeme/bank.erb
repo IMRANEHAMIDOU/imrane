@@ -29,15 +29,15 @@
              class="h-32 md:h-40 rounded-[20px] border-1 border-green-400 shadow-lg">
     </section>
 
-    <% if @success_message %>
+    <% if success_message %>
         <div class="bg-green-500 text-white p-4 mb-4 rounded-lg">
-            <%= @success_message %>
+            <%= success_message %>
         </div>
     <% end %>
 
-    <% if @error_message %>
+    <% if error_message %>
         <div class="bg-red-500 text-white p-4 mb-4 rounded-lg">
-            <%= @error_message %>
+            <%= error_message %>
         </div>
     <% end %>
 
@@ -52,7 +52,7 @@
                     </button>
                 </h3>
                 <form class="mb-4" action="/bank">
-                        <input type="text" name="name"
+                        <input type="text" name="name" value="<%=search_user%>"
                             class="mt-1 p-2 w-full bg-gray-800 rounded-lg text-white" placeholder="nom utilisateur"
                             >
                     </form>
@@ -93,7 +93,7 @@
                     Comptes
                 </h3>
                 <form class="mb-4" action="/bank">
-                    <input type="text" name="account_number"
+                    <input type="text" name="account_number"  value="<%=search_account%>"
                         class="mt-1 p-2 w-full bg-gray-800 rounded-lg text-white" placeholder="numéro du compte"
                         >
                 </form>

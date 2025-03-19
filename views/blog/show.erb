@@ -46,7 +46,7 @@
                             <div>
                                 <button class="text-green-400 hover:underline"
                                     onclick="editComment(<%= comment['id'] %>, '<%= comment['content'].gsub("'", "\\'") %>')">Éditer</button>
-                                <a href="/blog/post/<%=post['id']%>/comment/<%=comment['id']%>/delet"
+                                <a href="/blog/comment/<%=comment['id']%>/delet"
                                     class="text-red-400 hover:underline">Supprimer</a>
                             </div>
                         </div>

@@ -11,6 +11,6 @@ def index()
 end
 
 def refresh_db(posts,comments)
-  $db = {posts: posts, comments: comments}
-  File.write($file, JSON.pretty_generate($db))
+  data = {posts: posts, comments: comments}
+  File.write($file, JSON.pretty_generate(data))
 end

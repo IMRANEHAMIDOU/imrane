@@ -3,10 +3,10 @@ enable :sessions
 
 $file = "./views/tp bank systeme/bank.json"
 
-
+#la fonction qui va lire le json et créer tout les instance de User, Account et Operations
 def get_data()
     db = JSON.parse(File.read($file))
-
+    puts db["users"].inspect
     #création des utilisateurs existant dans le json
     db["users"].each do |u|
         user = User.new(u["name"])
@@ -33,6 +33,9 @@ def get_data()
     #puts db.inspect
 end
 
+
+#l'opération inverse de get_data, cette fonction va creer une hash, contenant les
+#clés accounts, users, operations, pour ensuite les persisté dans le fichier json
 def persiste_data()
     my_json = {
         "users" => [],
@@ -73,19 +76,19 @@ end
 
 get_data()
 
-
 get '/bank' do
-
-    @success_message = session.delete(:success_message)
-    @error_message = session.delete(:error_message)
-
     search_user = params["name"] ? params["name"] : ''
-    search_account = params["account_number"] ? params["account_number"].to_i : ''
+    search_account = params["account_number"] ? params["account_number"] : ''
+
+    success_message = session.delete(:success_message)
+    error_message = session.delete(:error_message)
+
+    
 
     accounts = if search_account==''
         Account.get_all_account
       else
-        Account.get_all_account.find_all { |account| account.number == search_account }
+        Account.get_all_account.find_all { |account| account.number == search_account.to_i }
       end
 
     users = if search_user==''
@@ -96,7 +99,7 @@ get '/bank' do
 
     operations = Operations.all
 
-    erb :"tp bank systeme/bank", locals:{accounts: accounts, users:users, operations:operations, search_user: search_user}
+    erb :"tp bank systeme/bank", locals:{accounts: accounts, users:users, operations:operations, search_user: search_user, search_account: search_account, success_message:success_message, error_message:error_message}
 end
 
 get '/bank/account/:id/setstate' do
@@ -141,7 +144,7 @@ post '/bank/add_user' do
     redirect '/bank'
 end
 
-#creation compte
+#creation compte pour un user existant
 get '/bank/user/:id/create_account' do
     user_id = params["id"].to_i
     user = User.all.find{|user| user.id==user_id}
